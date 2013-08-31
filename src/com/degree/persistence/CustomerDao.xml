@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.degree.persistence.CustomerDao">
+	
+	<resultMap id="result" type="customer">
+        <result property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <result property="phone" column="c_phone"/>
+        <result property="address" column="c_address"/>
+        <result property="gender" column="c_gender"/>
+        <result property="birthday" column="c_birthday"/>
+        <result property="isdeleted" column="c_isdeleted"/>
+        <result property="time" column="c_time"/>
+    </resultMap>
+	
+	<select id="getAll" resultMap="result">  
+		SELECT * 
+		FROM yq_customer; 
+	</select>
+	
+	<insert id="save" parameterType="customer">
+		INSERT INTO yq_customer (c_id,c_name,c_phone,c_address,c_gender,c_birthday,
+			c_isdeleted,c_time) 
+    	VALUE (#{id},#{name},#{phone},#{address},#{gender},#{birthday},#{isdeleted},#{time})
+	</insert>
+	
+	<update id="update" parameterType="customer"> 
+  		UPDATE yq_customer
+  		SET
+			c_name = #{name},  
+			c_phone = #{phone},  
+			c_address = #{address}, 
+			c_gender = #{gender}, 
+			c_birthday = #{birthday} 
+  		where c_id = #{id};
+	</update>
+
+    <select id="getLastCustomer" resultMap="result">  
+		select * from yq_customer order by c_id DESC limit 1; 
+	</select> 
+	
+	<select id="getCustomerById" parameterType="String" resultMap="result">  
+		SELECT * 
+		FROM yq_customer where c_id = #{id}; 
+	</select> 
+</mapper>

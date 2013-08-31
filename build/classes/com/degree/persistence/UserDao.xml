@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.degree.persistence.UserDao">
+	
+	<resultMap id="result" type="user">
+        <result property="id" column="u_id"/>
+        <result property="name" column="u_name"/>
+        <result property="account" column="u_account"/>
+        <result property="password" column="u_password"/>
+        <result property="isdeleted" column="u_isdeleted"/>
+        <result property="time" column="u_time"/>
+    </resultMap>
+	
+	<select id="getAllUser" resultMap="result">  
+		SELECT u_id,u_name,u_account,u_password,u_isdeleted,u_time 
+		FROM yq_user; 
+	</select>
+	
+	<insert id="saveUser" parameterType="user">
+		INSERT INTO yq_user (u_name,u_account,u_password,u_isdeleted,u_time) 
+    	VALUE (#{name},#{account},#{password},#{isdeleted},#{time})
+	</insert>
+	
+	<update id="updateUser" parameterType="user"> 
+  		UPDATE yq_user
+  		SET
+  			u_name = #{name},  
+			u_account = #{account},  
+			u_password = #{password},  
+			u_isdeleted = #{isdeleted}, 
+			u_time = #{time} 
+  		where u_id = #{id} 
+	</update>
+	
+	<delete id="deleteUser"  parameterType="int">
+    	DELETE FROM yq_user
+    	WHERE u_id = #{id}
+    </delete>
+    
+    <select id="getUserById" resultMap="result">  
+		SELECT u_id,u_name,u_account,u_password,u_isdeleted,u_time 
+		FROM yq_user where u_id = #{id}; 
+	</select>
+	
+	<select id="getUserByUsername" parameterType="String" resultMap="result">  
+		SELECT u_id,u_name,u_account,u_password,u_isdeleted,u_time 
+		FROM yq_user where u_account = #{userName}; 
+	</select>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.degree.persistence.PolicyDao">
+	<resultMap id="result" type="policy">
+        <result property="id" column="r_id"/>
+        <result property="type" column="r_type"/>
+        <result property="loan_years" column="r_loan_years"/>
+        <result property="jiaoqiangxian_no" column="r_jiaoqiangxian_no"/>
+        <result property="shangyexian_no" column="r_shangyexian_no"/>
+        <result property="insuer_comp" column="r_insuer_comp"/>
+        <result property="car_id" column="r_car_id"/>
+        <result property="customer_id" column="r_customer_id"/>
+        <result property="saler_id" column="r_saler_id"/>
+        <result property="jiaoqiangxian_sum" column="r_jiaoqiangxian_sum"/>
+        <result property="shangyexian_sum" column="r_shangyexian_sum"/>
+        <result property="jiao_discount" column="r_jiao_discount"/>
+        <result property="shang_discount" column="r_shang_discount"/>
+        <result property="shangbao_2" column="r_shangbao_2"/>
+        <result property="shangbao_3" column="r_shangbao_3"/>
+        <result property="shangbao_4" column="r_shangbao_4"/>
+        <result property="shangbao_5" column="r_shangbao_5"/>
+        <result property="shanglv_2" column="r_shanglv_2"/>
+        <result property="shanglv_3" column="r_shanglv_3"/>
+        <result property="shanglv_4" column="r_shanglv_4"/>
+        <result property="shanglv_5" column="r_shanglv_5"/>
+        <result property="from" column="r_from"/>
+        <result property="to" column="r_to"/>
+        <result property="years" column="r_years"/>
+        <result property="present_sum" column="r_present_sum"/>
+        <result property="note" column="r_note"/>
+        <result property="isdeleted" column="r_isdeleted"/>
+        <result property="time" column="r_time"/>
+        <result property="service" column="r_service"/>
+        <result property="channel" column="r_channel"/>
+    </resultMap>
+    
+	<insert id="savePolicy" parameterType="policy">
+		INSERT INTO yq_policy_day (r_id, r_type, r_loan_years, r_jiaoqiangxian_no, 
+		r_shangyexian_no, r_insuer_comp, r_car_id,
+		r_jiaoqiangxian_sum, r_shangyexian_sum, r_jiao_discount,
+		r_shang_discount, r_shangbao_2, r_shangbao_3,
+		r_shangbao_4, r_shangbao_5, r_shanglv_2,
+		r_shanglv_3, r_shanglv_4, r_shanglv_5,r_service,r_channel,r_customer_id,r_saler_id,
+		r_from, r_to, r_years, r_present_sum, r_note, r_isdeleted, r_time) 
+    	VALUE (#{id},#{type}, #{loan_years}, #{jiaoqiangxian_no}, #{shangyexian_no}, #{insuer_comp},  #{car_id},
+    	#{jiaoqiangxian_sum}, #{shangyexian_sum}, #{jiao_discount}, #{shang_discount},
+    	#{shangbao_2}, #{shangbao_3}, #{shangbao_4}, #{shangbao_5}, #{shanglv_2},
+    	#{shanglv_3}, #{shanglv_4}, #{shanglv_5}, #{service}, #{channel}, 
+    	#{customer_id}, #{saler_id}, #{from}, #{to},#{years}
+    	,#{present_sum},#{note},#{isdeleted},#{time})
+	</insert>
+	
+	<select id="getAllPolicy" resultMap="result">  
+		SELECT * 
+		FROM yq_policy_day; 
+	</select>
+	
+	<select id="getPolicyById" parameterType="String" resultMap="result">  
+		SELECT * 
+		FROM yq_policy_day where r_id = #{id}; 
+	</select> 
+	
+	<select id="getLastPolicy" resultMap="result">  
+		select * from yq_policy_day order by r_id DESC limit 1; 
+	</select> 
+	
+	<update id="updateCustomerId" parameterType="policy"> 
+  		UPDATE yq_policy_day
+  		SET
+  			r_customer_id = #{customer_id}  
+  		where r_id = #{id} 
+	</update>	
+	
+	<update id="deletePolicy" parameterType="String"> 
+  		UPDATE yq_policy_day
+  		SET
+  			r_isdeleted = '1'  
+  		where r_id = #{id}; 
+	</update>	
+	
+	<update id="updateSalerid" parameterType="policy"> 
+  		UPDATE yq_policy_day
+  		SET
+  			r_saler_id = #{saler_id}  
+  		where r_id = #{id} ;
+	</update>
+	
+	<update id="updateAotoid" parameterType="policy"> 
+  		UPDATE yq_policy_day
+  		SET
+  			r_car_id = #{car_id}   
+  		where r_id = #{id} 
+	</update>
+	
+	<update id="updateShang" parameterType="policy"> 
+  		UPDATE yq_policy_day
+  		SET
+  			r_shangbao_2 = #{shangbao_2},    
+  			r_shangbao_3 = #{shangbao_3},    
+  			r_shangbao_4 = #{shangbao_4},    
+  			r_shangbao_5 = #{shangbao_5},    
+  			r_shanglv_2 = #{shanglv_2},    
+  			r_shanglv_3 = #{shanglv_3},    
+  			r_shanglv_4 = #{shanglv_4},    
+  			r_shanglv_5 = #{shanglv_5}    
+  		where r_id = #{id} 
+	</update>
+	
+	<insert id="addAoto" parameterType="aoto">
+		INSERT INTO yq_aoto (a_id, a_number, a_vin, a_engine_no, 
+		   	a_model, a_limit, a_isdeleted,a_time) 
+    	VALUE (#{id},#{number}, #{vin}, #{engine_no}, #{model}, #{limit},  #{isdeleted},
+    		#{time})
+	</insert>
+	
+	<update id="updatePolicy" parameterType="policy"> 
+  		UPDATE yq_policy_day
+  		SET
+		r_type = #{type}, 
+		r_loan_years = #{loan_years}, 
+		r_jiaoqiangxian_no = #{jiaoqiangxian_no}, 
+		r_shangyexian_no = #{shangyexian_no}, 
+		r_insuer_comp = #{insuer_comp}, 
+		r_jiaoqiangxian_sum = #{jiaoqiangxian_sum}, 
+		r_shangyexian_sum = #{shangyexian_sum}, 
+		r_jiao_discount = #{jiao_discount},
+		r_shang_discount = #{shang_discount},
+		r_service = #{service},
+		r_channel = #{channel},
+		r_from = #{from}, 
+		r_to = #{to}, 
+		r_years = #{years}, 
+		r_present_sum = #{present_sum}, 
+		r_note  = #{note}  
+  		where r_id = #{id} 
+	</update>
+
+	<select id="getPolicy" resultMap="result" parameterType="java.util.Map">
+		select * from        
+		   select * from   
+		    (Select * from yq_policy_day where r_from >= '2011-08-11' and r_from &lt; '2014-08-13') as a 
+		    where r_to >= '' and r_to &lt; '';
+	</select>
+</mapper>

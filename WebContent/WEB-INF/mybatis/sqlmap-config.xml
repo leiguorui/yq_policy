@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.degree.domain.User" alias="user"/>
+		<typeAlias type="com.degree.domain.Policy" alias="policy"/>
+		<typeAlias type="com.degree.domain.Aoto" alias="aoto"/>
+		<typeAlias type="com.degree.domain.Saler" alias="saler"/>
+		<typeAlias type="com.degree.domain.Customer" alias="customer"/>
+		<typeAlias type="com.degree.domain.PolicyVo" alias="policyVo"/>
+	</typeAliases>
+</configuration>
