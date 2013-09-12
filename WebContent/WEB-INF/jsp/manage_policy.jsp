@@ -107,7 +107,7 @@ request.setAttribute("realPath", realPath);
 		<div id="menu" class="hidden-phone">
 			<c:import url="${realPath }/left_menu.html" charEncoding="UTF-8" >
 				<c:param name="type" value="manage"></c:param>
-				<c:param name="user" value="${sessionScope.USER_CONTEXT.name}"></c:param>
+				<c:param name="userid" value="${sessionScope.USER_CONTEXT.id}"></c:param>
 			</c:import>
 			<div class="clearfix" style="clear: both"></div>
 		</div>
@@ -120,7 +120,7 @@ request.setAttribute("realPath", realPath);
 <div class="heading-buttons">
 	<h3>保单管理 </h3>
 	<div class="buttons pull-right">
-		<a href="addPolicyPopup.html"  rel="superbox[iframe][1200x768]"  class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> 添加保单</a>
+		<a href="addPolicy.html"  rel="superbox[iframe][850x750]"  class="btn btn-primary btn-icon glyphicons circle_plus"><i></i> 添加保单</a>
 		<a href="#" id="search_id"  class="btn btn-primary btn-icon glyphicons search"><i></i> 查询</a>
 		<a href="managePolicy.html"  class="btn btn-primary btn-icon glyphicons refresh"><i></i> 刷新</a>
 	</div>
@@ -130,45 +130,60 @@ request.setAttribute("realPath", realPath);
 <div class="innerLR">
 <form action="managePolicy.html" method="post" id="queryPolicyId">
 	<div class="widget">
-	保单开始日期:
+	商业险起日期:
 		<div class="input-prepend input-append">
 			<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 			<span class="add-on"><i></i>从</span>
-			<input name="beginFrom" id="beginDateFrom" style="width: 80px;" type="text" onClick="WdatePicker()"/>
+			<input name="CommerceBeginFrom" id="beginDateFrom" style="width: 80px;" type="text" onClick="WdatePicker()"/>
 			<span class="add-on glyphicons calendar"><i></i></span>
 		</div>
 		<div class="input-append">
 			<span class="add-on"><i></i>至</span>
-			<input name="beginTo" id="beginDateTo" style="width: 80px;" type="text" onClick="WdatePicker()"/>
+			<input name="CommerceBeginEnd" id="beginDateTo" style="width: 80px;" type="text" onClick="WdatePicker()"/>
 			<span class="add-on glyphicons calendar"><i></i></span>
 		</div>
 	</div>
 	<div class="widget" style="margin-top: -20px;">
-		保单结束日期:
+		 初始登记日期:
 		<div class="input-prepend input-append">
 		 
 			<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 			<span class="add-on"><i></i>从</span>
-			<input name="endFrom" id="endDateFrom" style="width: 80px;" type="text" onClick="WdatePicker()"/>
+			<input name="FirstRegisterNumberFrom" id="endDateFrom" style="width: 80px;" type="text" onClick="WdatePicker()"/>
 			<span class="add-on glyphicons calendar"><i></i></span>
 		</div>
 		<div class="input-append">
 			<span class="add-on"><i></i>至</span>
-			<input name="endTo" id="beginDateTo" style="width: 80px;" type="text" onClick="WdatePicker()"/>
+			<input name="FirstRegisterNumberEnd" id="beginDateTo" style="width: 80px;" type="text" onClick="WdatePicker()"/>
 			<span class="add-on glyphicons calendar"><i></i></span>
 		</div>
 	</div>
+	<div class="widget" style="margin-top: -20px;">
+		出单日期:
+		<div class="input-prepend input-append">
+		 
+			<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+			<span class="add-on"><i></i>从</span>
+			<input name="IssuingDateFrom" id="endDateFrom" style="width: 80px;" type="text" onClick="WdatePicker()"/>
+			<span class="add-on glyphicons calendar"><i></i></span>
+		</div>
+		<div class="input-append">
+			<span class="add-on"><i></i>至</span>
+			<input name="IssuingDateEnd" id="beginDateTo" style="width: 80px;" type="text" onClick="WdatePicker()"/>
+			<span class="add-on glyphicons calendar"><i></i></span>
+		</div>
+	</div>	
 	
 	<div class="widget" style="margin-top: -20px;">
 	保单号: 
 	<div class="input-prepend input-append">
 		<span class="add-on"><i></i>商业险</span>
-		<input name="shangNo" id="shangyeNo" style="width: 80px;" type="text"/>
+		<input name="CommerceNumber" id="CommerceNumber" style="width: 80px;" type="text"/>
 		<span class="add-on glyphicons pencil"><i></i></span>
 	</div>
 	<div class="input-append">
 		<span class="add-on"><i></i>交强险</span>
-		<input name="jiaoNo" id="jiangqiangNo" style="width: 80px;" type="text"/>
+		<input name="SALI" id="jiangqiangNo" style="width: 80px;" type="text"/>
 		<span class="add-on glyphicons pencil"><i></i></span>
 	</div>
 	</div>
@@ -176,18 +191,23 @@ request.setAttribute("realPath", realPath);
 	<div class="widget" style="margin-top: -20px;">
 		姓名/名称: 
 		<div class="input-prepend input-append">
-			<span class="add-on"><i></i>顾客</span>
-			<input name="cName" id="customerName" style="width: 80px;" type="text" />
+			<span class="add-on"><i></i>投保人</span>
+			<input name="DeliveyName" id="customerName" style="width: 80px;" type="text" />
+			<span class="add-on glyphicons pencil"><i></i></span>
+		</div>
+		<div class="input-prepend input-append">
+			<span class="add-on"><i></i>被保人</span>
+			<input name="InsuredName" id="customerName" style="width: 80px;" type="text" />
 			<span class="add-on glyphicons pencil"><i></i></span>
 		</div>
 		<div class="input-append">
 			<span class="add-on"><i></i>销售</span>
-			<input name="sName" id="salerName" style="width: 80px;" type="text"/>
+			<input name="Saler" id="salerName" style="width: 80px;" type="text"/>
 			<span class="add-on glyphicons pencil"><i></i></span>
 		</div>
 		<div class="input-append">
 			<span class="add-on"><i></i>车牌</span>
-			<input name="cNumber" id="storeName" style="width: 80px;" type="text"/>
+			<input name="CarNumber" id="storeName" style="width: 80px;" type="text"/>
 			<span class="add-on glyphicons pencil"><i></i></span>
 		</div>
 	</div>
@@ -212,29 +232,28 @@ request.setAttribute("realPath", realPath);
 				<thead>
 					<tr>
 						<th style="width: 1%;" class="uniformjs"><input type="checkbox" /></th>
-						<th class="center">id</th>
-						<th class="center">商业险</th>
-						<th class="center">交强险</th>
+						<th class="center">业务类别</th>
+						<th class="center">保险公司</th>
+						<th class="center">商业险总值</th>
 						<th class="center">车牌号</th>
-						<th class="center">顾客</th>
+						<th class="center">被保人</th>
 						<th>销售</th>
-						<th class="center" style="width: 160px;">操作</th>
+						<th class="center" style="width: 60px;">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${policyVo}" var="policy">
+				<c:forEach items="${policys}" var="policy">
 					<tr class="selectable">
 						<td class="center uniformjs"><input type="checkbox" /></td>
-						<td class="center">${policy.id }</td>
-						<td class="center">${policy.shangyexian_no }</td>
-						<td class="center">${policy.jiaoqiangxian_no }</td>
-						<td class="center">No. ${policy.car_number }</td>
-						<td class="center">${policy.customer_name }</td>
-						<td><strong>${policy.saler_name }</strong><br/><small>${policy.saler_store }</small></td>
+						<td class="center">${policy.rId }</td>
+						<td class="center">${policy.rInsurancecompany }</td>
+						<td class="center">1000</td>
+						<td class="center">${policy.rCarnumber }</td>
+						<td class="center">${policy.rInsuredname }</td>
+						<td><strong>${policy.rSaler }</strong><br/><small>${sessionScope.USER_CONTEXT.name}</small></td>
 						<td class="center">
-							<a href="detailPolicy.html?id=${policy.id }" rel="superbox[iframe][1200x768]" class="glyphicons eye_open"><i></i></a>
-							<a href="updatePolicy.html?id=${policy.id }" rel="superbox[iframe][1200x768]" class="glyphicons pencil "><i></i></a>
-							<a href="#" onclick="deletePolicy('${policy.id }')" class="glyphicons remove_2"><i></i></a>
+							<a href="detailPolicy.html?id=${policy.rId }" rel="superbox[iframe][850x768]" class="btn-action glyphicons pencil btn-success"><i></i></a>
+							<a href="#" onclick="deletePolicy('${policy.rId }')"  class="btn-action glyphicons remove_2 btn-danger"><i></i></a>
 						</td>
 					</tr>				
 				</c:forEach>
@@ -262,7 +281,57 @@ request.setAttribute("realPath", realPath);
 		</div>
 				
 	</div>
+	<!-- JQueryUI v1.9.2 -->
+	<script src="theme/scripts/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
 	
+	<!-- JQueryUI Touch Punch -->
+	<!-- small hack that enables the use of touch events on sites using the jQuery UI user interface library -->
+	<script src="theme/scripts/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	
+	<!-- MiniColors -->
+	<script src="theme/scripts/jquery-miniColors/jquery.miniColors.js"></script>
+	
+	<!-- Themer -->
+	<script>
+	var themerPrimaryColor = '#47759e';
+	</script>
+	<script src="theme/scripts/jquery.cookie.js"></script>
+	<script src="theme/scripts/themer.js"></script>
+	
+	
+	
+	<!-- Resize Script -->
+	<script src="theme/scripts/jquery.ba-resize.js"></script>
+	
+	<!-- Uniform -->
+	<script src="theme/scripts/pixelmatrix-uniform/jquery.uniform.min.js"></script>
+	
+	<!-- Bootstrap Script -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- Bootstrap Extended -->
+	<script src="bootstrap/extend/bootstrap-select/bootstrap-select.js"></script>
+	<script src="bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
+	<script src="bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
+	<script src="bootstrap/extend/jasny-bootstrap/js/jasny-bootstrap.min.js" type="text/javascript"></script>
+	<script src="bootstrap/extend/jasny-bootstrap/js/bootstrap-fileupload.js" type="text/javascript"></script>
+	<script src="bootstrap/extend/bootbox.js" type="text/javascript"></script>
+	<script src="bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.min.js" type="text/javascript"></script>
+	<script src="bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js" type="text/javascript"></script>
+	
+	<!-- Custom Onload Script -->
+	<script src="theme/scripts/load.js"></script>
+	
+	
+
+<!-- google-code-prettify -->
+<script src="theme/scripts/google-code-prettify/prettify.js"></script>
+<script>
+$(function(){
+	if ($('.prettyprint').length)
+		prettyPrint();
+});
+</script>	
 <script>
 $(function(){
 	$("#search_id").click(function(){

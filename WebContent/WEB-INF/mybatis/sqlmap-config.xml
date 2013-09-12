@@ -15,5 +15,7 @@
 		<typeAlias type="com.degree.domain.Saler" alias="saler"/>
 		<typeAlias type="com.degree.domain.Customer" alias="customer"/>
 		<typeAlias type="com.degree.domain.PolicyVo" alias="policyVo"/>
+		<typeAlias type="com.degree.domain.LoginLog" alias="loginLog"/>
+		<typeAlias type="com.degree.domain.Store" alias="store"/>
 	</typeAliases>
 </configuration>

@@ -278,7 +278,7 @@
 						<td>
 						<div class="input-prepend">
 							<span class="add-on"></span>
-							<form:input path="store" style="width:80px" type="text" />
+							<form:input path="store" style="width:80px" type="text" value="${sessionScope.USER_CONTEXT.name} "/>
 						</div>
 						</td>
 					</tr>
@@ -563,30 +563,45 @@ $('#id_submit').click(function(){
     $('#id_policyForm').ajaxSubmit({ 
         url:'add.html', //提交给哪个执行
         type:'POST', 
-        success: function(){alert("1");} //显示操作提示
-        }); 
-    $('#id_aotoForm').ajaxSubmit({ 
-        url:'addAoto.html', //提交给哪个执行
-        type:'POST', 
-        success: function(){ alert("2");} //显示操作提示
-        });
-    $('#id_shangForm').ajaxSubmit({ 
-        url:'updateShang.html', //提交给哪个执行
-        type:'POST', 
-        success: function(){alert("3");} //显示操作提示
-        }); 
-    $('#id_customerForm').ajaxSubmit({ 
-        url:'addCustomer.html', //提交给哪个执行
-        type:'POST', 
-        success: function(){alert("4");} //显示操作提示
-        });
-    $('#id_salerForm').ajaxSubmit({ 
-        url:'addSaler.html', //提交给哪个执行
-        type:'POST', 
-        success: function(){ alert("5");} //显示操作提示
+        success: submit2() //显示操作提示
         }); 
     return false; //为了不刷新页面,返回false，反正都已经在后台执行完了，没事！
 });  
+function submit2(){
+	alert("2");
+    $('#id_aotoForm').ajaxSubmit({ 
+        url:'addAoto.html', //提交给哪个执行
+        type:'POST', 
+        success: submit3() //显示操作提示
+        });	
+}
+
+function submit3(){
+	alert("3");
+    $('#id_shangForm').ajaxSubmit({ 
+        url:'updateShang.html', //提交给哪个执行
+        type:'POST', 
+        success: submit4() //显示操作提示
+        }); 
+}
+
+function submit4(){
+	alert("4");
+    $('#id_customerForm').ajaxSubmit({ 
+        url:'addCustomer.html', //提交给哪个执行
+        type:'POST', 
+        success: submit5() //显示操作提示
+        });
+}
+
+function submit5(){
+	alert("5");
+    $('#id_salerForm').ajaxSubmit({ 
+        url:'addSaler.html', //提交给哪个执行
+        type:'POST', 
+        success: function(){alert("添加成功!");} //显示操作提示
+        }); 
+}
 </script>
 	
 </body>

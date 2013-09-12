@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<a href="index.html?lang=en" class="appbrand"><span>业乔投资发展有限公司</span></a>
-
-<button type="button" class="btn btn-navbar">
-	<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-</button>
+<a href="index.html?lang=en" class="appbrand"><span>业乔投资(集团)有限公司</span></a>
 
 <ul class="topnav pull-right">
 	<li class="visible-desktop">
 		<ul class="notif">
-			<li><a href="" class="glyphicons envelope" data-toggle="tooltip" data-placement="bottom" data-original-title="您有新的消息"><i></i> 5</a></li>
-			<li><a href="" class="glyphicons log_book" data-toggle="tooltip" data-placement="bottom" data-original-title="您有新的系统消息"><i></i> 3</a></li>
+			<li><a href="settingUser.html" rel="superbox[iframe][500x200]" class="glyphicons claw_hammer" ><i></i> 5</a></li>
+			<li><a href="#" class="glyphicons envelope" ><i></i> 5</a></li>
+			<li><a href="#" class="glyphicons log_book" ><i></i> 3</a></li>
 		</ul>
 	</li>
 	<li class="account">

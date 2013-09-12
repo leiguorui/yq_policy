@@ -12,12 +12,25 @@
 	<script src="scripts/jquery.form.js"></script>	
 	<script language="javascript" type="text/javascript"> 
 	$(document).ready(function(){ 
+		$('#ServiceCategory').val('${policy.rServicetype}');
+		$('#InsuranceCompany').val('${policy.rInsurancecompany}');
+		$('#IssuingType').val('${policy.rIssuingtype}');
+		$('#ClientSubjection').val('${policy.rClientsubjection}');
+		$('#BuyType').val('${policy.rBuytype}');
+		
+		<c:forEach var="i" begin="0" end="5" step="1"> 
+		$('#BaoDanLeiXin${i}').val('${policyDetail[i].formtype }');
+		</c:forEach>
+		
+		$('#GiftType').val('${policy.rGifttype}');
+		
 		$('.BaoDanLeiXin').focus(function(){
 			this.defOpt=this.selectedIndex;
 		});
 		$('.BaoDanLeiXin').change(function(){
 			this.selectedIndex=this.defOpt;
 		});
+		
 		$('#ServiceCategory').change(function(){ 
 			if($(this).children('option:selected').val() == '新车录入'){
 				$('#kehufufei').text('客户付费');
@@ -35,7 +48,7 @@
 			}	
 			
 		    $('#policyFrom').ajaxSubmit({ 
-		        url:'addPolicy.html', //提交给哪个执行
+		        url:'updatePolicy.html', //提交给哪个执行
 		        type:'POST', 
 		        success: function(){alert('')} //显示操作提示
 		        }); 
@@ -128,7 +141,7 @@
     <th colspan="8" scope="col"><h1><strong>业乔代理保险信息录入系统</strong>
       <label></label>
     </h1>
-	  <div align="right"><span align="left">${user.name }</span>  <span align="right">No.${policyId } ${time }</span>
+	  <div align="right"><span align="left">${policy.r1 }</span>  <span align="right">No.${policy.rId } ${policy.rSavedatetime }</span>
       </div></th>
   </tr>
   <tr>
@@ -144,7 +157,7 @@
       </select>
     </label>
       保险公司:
-      <select name="InsuranceCompany">
+      <select name="InsuranceCompany" id="InsuranceCompany">
         <option value="中保">中保</option>
         <option value="平安">平安</option>
         <option value="太平洋">太平洋</option>
@@ -154,7 +167,7 @@
         <option value="太平">太平</option>
       </select>
       出单方式:
-      <select name="IssuingType" id="ChuDanFangShi">
+      <select name="IssuingType" id="IssuingType">
         <option value="直销">直销</option>
         <option value="网销">网销</option>
         <option value="电销">电销</option>
@@ -162,34 +175,34 @@
 	  <br/>
 	        投保人姓名:
       <label>
-      <input name="DeliveyName" type="text" size="10" />
+      <input name="DeliveyName" type="text" size="10" value="${policy.rDeliveyname }"/>
       </label>
       被保险人姓名:
-    <input name="InsuredName" type="text" size="10" /> 
+    <input name="InsuredName" type="text" size="10" value="${policy.rInsuredname }"/> 
     被保险人电话:
-    <input name="InsuredPhone" type="text" size="10" /></td>
+    <input name="InsuredPhone" type="text" size="10" value="${policy.rInsuredphone }"/></td>
   </tr>
   <tr>
     <td height="60" colspan="8" bgcolor="#FFFFFF"><p>车牌号:
-        <input name="CarNumber" type="text" size="10" /> 
+        <input name="CarNumber" type="text" size="10" value="${policy.rCarnumber }"/> 
     厂牌型号:
-    <input name="ManufactureType" type="text" size="10" /> 
+    <input name="ManufactureType" type="text" size="10" value="${policy.rManufacturetype }"/> 
     车架号(17位):
-    <input name="CarframeNumber" type="text" size="20" />
+    <input name="CarframeNumber" type="text" size="20" value="${policy.rCarframenumber }"/>
     <br/>
     发动机号:
-        <input name="EngineNumber" type="text" size="10" /> 
+        <input name="EngineNumber" type="text" size="10" value="${policy.rEnginenumber }"/> 
     初始登记日期
     :
-    <input name="FirstRegisterNumber" type="text" size="10" onClick="WdatePicker()"/> 
+    <input name="FirstRegisterNumber" type="text" size="10" value="${policy.rFirstregisternumber }" onClick="WdatePicker()"/> 
     客户隶属:
-      <select name="ClientSubjection" id="KeHuLiShu">
+      <select name="ClientSubjection" id="ClientSubjection">
         <option value="本地">本地</option>
         <option value="外阜">外阜</option>
       </select> 
       <span id="BuyType" style="display:none;">
       购车方式:
-      <select name="BuyType" >
+      <select name="BuyType" id="BuyType">
         <option value="全款">全款</option>
         <option value="贷款2年">贷款2年</option>
         <option value="贷款3年">贷款3年</option>
@@ -212,98 +225,98 @@
   </tr>
   <tr>
     <td bgcolor="#CCCCCC"><h5>首年交强险</h5></td>
-    <td bgcolor="#CCCCCC"><input name="SALI" type="text" size="17" /></td>
-    <td bgcolor="#CCCCCC"><input name="Discount" id="ZheKou1" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Charge" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending1" id="kehufufei_input" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending2" id="xiaoshouzengsong_input" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><select style="display:none;" name="FormType">
+    <td bgcolor="#CCCCCC"><input name="SALI" value="${policyDetail[0].commercenumber }" type="text" size="17" /></td>
+    <td bgcolor="#CCCCCC"><input name="Discount" value="${policyDetail[0].discount }" id="ZheKou1" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Charge" value="${policyDetail[0].charge }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending1" value="${policyDetail[0].pending1 }" id="kehufufei_input" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending2" value="${policyDetail[0].pending2 }" id="xiaoshouzengsong_input" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><select style="display:none;" name="FormType" class="BaoDanLeiXin">
         <option value="A类">A类</option>
         <option value="B类">B类</option>
         <option value="C类">C类</option>
     </select></td>
-    <td bgcolor="#CCCCCC"><input style="display:none;" name="CommerceBegin" type="text" size="12" /></td>
+    <td bgcolor="#CCCCCC"><input style="display:none;" name="CommerceBegin" value="${policyDetail[0].commercebegin }"  type="text" size="12" /></td>
   </tr>  
   <tr>
     <td bgcolor="#CCCCCC"><h5>商业第一年</h5></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceNumber" class="BaoDanHao" id="BaoDanHao1" type="text" size="17" /></td>
-    <td bgcolor="#CCCCCC"><input name="Discount" id="ZheKou1" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Charge" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending1" id="kehufufei_input" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending2" id="xiaoshouzengsong_input" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceNumber" value="${policyDetail[1].commercenumber }" class="BaoDanHao" id="BaoDanHao1" type="text" size="17" /></td>
+    <td bgcolor="#CCCCCC"><input name="Discount" value="${policyDetail[1].discount }" id="ZheKou1" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Charge" value="${policyDetail[1].charge }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending1" value="${policyDetail[1].pending1 }" id="kehufufei_input" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending2" value="${policyDetail[1].pending2 }" id="xiaoshouzengsong_input" type="text" size="10" /></td>
     <td bgcolor="#CCCCCC"><select name="FormType" class="BaoDanLeiXin" id="BaoDanLeiXin1">
         <option value="A类">A类</option>
         <option value="B类">B类</option>
         <option value="C类">C类</option>
     </select></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceBegin" type="text" size="12" onClick="WdatePicker()"/></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceBegin" value="${policyDetail[1].commercebegin }" type="text" size="12" /></td>
   </tr>
   <tr>
     <td bgcolor="#CCCCCC"><h5>商业第二年</h5></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceNumber" id="BaoDanHao2" class="BaoDanHao" type="text" size="17" /></td>
-    <td bgcolor="#CCCCCC"><input name="Discount" id="ZheKou2" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Charge" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending1" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending2" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceNumber" value="${policyDetail[2].commercenumber }"  id="BaoDanHao2" class="BaoDanHao" type="text" size="17" /></td>
+    <td bgcolor="#CCCCCC"><input name="Discount" value="${policyDetail[2].discount }" id="ZheKou2" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Charge" value="${policyDetail[2].charge }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending1" value="${policyDetail[2].pending1 }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending2" value="${policyDetail[2].pending2 }" type="text" size="10" /></td>
     <td bgcolor="#CCCCCC"><select name="FormType" class="BaoDanLeiXin" id="BaoDanLeiXin2">
         <option value="A类">A类</option>
         <option value="B类">B类</option>
         <option value="C类">C类</option>
     </select></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceBegin" type="text" size="12" onClick="WdatePicker()"/></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceBegin" value="${policyDetail[2].commercebegin }" type="text" size="12" /></td>
   </tr>
   <tr>
     <td bgcolor="#CCCCCC"><h5>商业第三年</h5></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceNumber" id="BaoDanHao3" class="BaoDanHao" type="text" size="17" /></td>
-    <td bgcolor="#CCCCCC"><input name="Discount" id="ZheKou3" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Charge" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending1" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending2" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceNumber" value="${policyDetail[3].commercenumber }"  id="BaoDanHao3" class="BaoDanHao" type="text" size="17" /></td>
+    <td bgcolor="#CCCCCC"><input name="Discount" value="${policyDetail[3].discount }" id="ZheKou3" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Charge" value="${policyDetail[3].charge }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending1" value="${policyDetail[3].pending1 }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending2" value="${policyDetail[3].pending2 }" type="text" size="10" /></td>
     <td bgcolor="#CCCCCC"><select name="FormType" id="BaoDanLeiXin3" class="BaoDanLeiXin">
         <option value="A类">A类</option>
         <option value="B类">B类</option>
         <option value="C类">C类</option>
     </select></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceBegin" type="text" size="12" onClick="WdatePicker()"/></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceBegin" value="${policyDetail[3].commercebegin }" type="text" size="12" /></td>
   </tr>
   <tr>
     <td height="23" bgcolor="#CCCCCC"><h5>商业第四年</h5></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceNumber" id="BaoDanHao4" class="BaoDanHao" type="text" size="17" /></td>
-    <td bgcolor="#CCCCCC"><input name="Discount" id="ZheKou4" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Charge" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending1" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending2" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceNumber" value="${policyDetail[4].commercenumber }"  id="BaoDanHao4" class="BaoDanHao" type="text" size="17" /></td>
+    <td bgcolor="#CCCCCC"><input name="Discount" value="${policyDetail[4].discount }" id="ZheKou4" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Charge" value="${policyDetail[4].charge }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending1" value="${policyDetail[4].pending1 }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending2" value="${policyDetail[4].pending2 }" type="text" size="10" /></td>
     <td bgcolor="#CCCCCC"><select name="FormType" id="BaoDanLeiXin4" class="BaoDanLeiXin">
         <option value="A类">A类</option>
         <option value="B类">B类</option>
         <option value="C类">C类</option>
     </select></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceBegin" type="text" size="12" onClick="WdatePicker()"/></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceBegin" value="${policyDetail[4].commercebegin }" type="text" size="12" /></td>
   </tr>
   <tr>
     <td height="23" bgcolor="#CCCCCC"><h5>商业第五年</h5></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceNumber" id="BaoDanHao5" class="BaoDanHao" type="text" size="17" /></td>
-    <td bgcolor="#CCCCCC"><input name="Discount" id="ZheKou5" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Charge" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending1" type="text" size="10" /></td>
-    <td bgcolor="#CCCCCC"><input name="Pending2" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceNumber" value="${policyDetail[5].commercenumber }"  id="BaoDanHao5" class="BaoDanHao" type="text" size="17" /></td>
+    <td bgcolor="#CCCCCC"><input name="Discount" value="${policyDetail[5].discount }" id="ZheKou5" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Charge" value="${policyDetail[5].charge }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending1" value="${policyDetail[5].pending1 }" type="text" size="10" /></td>
+    <td bgcolor="#CCCCCC"><input name="Pending2" value="${policyDetail[5].pending2 }" type="text" size="10" /></td>
     <td bgcolor="#CCCCCC"><select name="FormType" id="BaoDanLeiXin5" class="BaoDanLeiXin">
         <option value="A类">A类</option>
         <option value="B类">B类</option>
         <option value="C类">C类</option>
     </select></td>
-    <td bgcolor="#CCCCCC"><input name="CommerceBegin" type="text" size="12" onClick="WdatePicker()"/></td>
+    <td bgcolor="#CCCCCC"><input name="CommerceBegin" value="${policyDetail[5].commercebegin }" type="text" size="12" /></td>
   </tr>
   <tr>
     <td colspan="8"><div align="right">销售人:
-        <input name="Saler" type="text" size="10" />
+        <input name="Saler" value="${policy.rSaler }" type="text" size="10" />
         出单人:
-        <input name="IssuingName" type="text" size="10" />
+        <input name="IssuingName" value="${policy.rIssuingname }" type="text" size="10" />
      出单日期:
-     <input name="IssuingDate" type="text" size="10"  onClick="WdatePicker()"/>
+     <input name="IssuingDate" value="${policy.rIssuingdate }" type="text" size="10"  onClick="WdatePicker()"/>
      礼包类型
      :
-      <select name="GiftType">
+      <select name="GiftType" id="GiftType">
         <option value="新车A礼包">新车A礼包</option>
         <option value="新车B礼包">新车B礼包</option>
         <option value="续保A礼包">续保A礼包</option>

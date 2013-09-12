@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.degree.persistence.LoginLogDao">
+	
+	<resultMap id="result" type="loginLog">
+        <result property="id" column="l_id"/>
+        <result property="userId" column="l_userid"/>
+        <result property="dateTime" column="l_date"/>
+    </resultMap>
+	
+	<select id="getAllByUserId" parameterType="String" resultMap="result">  
+		SELECT * 
+		FROM yq_aoto where l_id = #{id}; 
+	</select>
+	
+	<insert id="save" parameterType="loginLog" useGeneratedKeys="true"  keyProperty="l_id">
+		INSERT INTO yq_aoto (a_id,a_number,a_vin,a_engine_no,a_model,a_limit,
+			a_isdeleted,a_time) 
+    	VALUE (#{id},#{number},#{vin},#{engine_no},#{model},#{limit},#{isdeleted},#{time});
+	</insert>
+	
+	<update id="update" parameterType="aoto"> 
+  		UPDATE yq_aoto
+  		SET
+			a_number = #{number},  
+			a_vin = #{vin},  
+			a_engine_no = #{engine_no}, 
+			a_model = #{model}, 
+			a_limit = #{limit} 
+  		where a_id = #{id};
+	</update>
+
+    <select id="getLastAoto" resultMap="result">  
+		select * from yq_aoto order by a_id DESC limit 1; 
+	</select> 
+	
+	<select id="getAotoById" parameterType="String" resultMap="result">  
+		SELECT * 
+		FROM yq_aoto where a_id = #{id}; 
+	</select> 
+</mapper>

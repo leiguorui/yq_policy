@@ -138,9 +138,20 @@
 	</update>
 
 	<select id="getPolicy" resultMap="result" parameterType="java.util.Map">
-		select * from        
-		   select * from   
-		    (Select * from yq_policy_day where r_from >= '2011-08-11' and r_from &lt; '2014-08-13') as a 
-		    where r_to >= '' and r_to &lt; '';
+	select r_id, r_jiaoqiangxian_no, r_shangyexian_no, c_name, a_number, sa_name, sa_password 
+		   from   (select * from   
+              (Select * from yq_policy_day where r_from >= #{0} and r_from  &lt;  #{1}) as a1 
+              where r_to >= #{2} and r_to  &lt;  #{3}) as a   
+	       inner join yq_aoto b on a.r_car_id = b.a_id  
+	       inner join yq_customer c on a.r_customer_id = c.c_id 
+	       inner join yq_saler d on a.r_saler_id = d.sa_id 
+         where r_jiaoqiangxian_no LIKE  #{4}  
+	       and r_shangyexian_no LIKE #{5}  
+	       and a_number LIKE #{6} 
+	       and c_name LIKE #{7} 
+	       and sa_name LIKE #{8}  
+	       and sa_password LIKE #{9} 
+	       and r_isdeleted = '0'       
+	       ORDER BY r_id DESC;
 	</select>
 </mapper>

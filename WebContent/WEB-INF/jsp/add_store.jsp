@@ -78,18 +78,11 @@ function sf(){document.getElementById("account_id").focus();}
 </head>
 <body onLoad=sf()>
 
-<form:form commandName="user" action="addUser.html">
+<form:form commandName="store" action="addStore.html">
 <fieldset>
-<legend>人员信息录入</legend>
-	<label for="firstname" accesskey="f">姓名: </label>
-		<form:input path="account" id="account_id" type="text" tabindex="1" value="" title="first name"/><br>
-	<label for="lastname" accesskey="l">所属门店: </label>
-		<form:select path="name">
-			<c:forEach items="${stores }" var="store">
-				<option value="${store.name }">${store.name }
-			</c:forEach>
-		</form:select>
-		<br/>
+<legend>门店信息录入</legend>
+	<label for="lastname" accesskey="l">门店名: </label>
+		<form:input path="name" type="text" tabindex="2" title="last name"/><br>
 	<label for="kludge"></label>
 		<input type="submit" value="保存" id="submit" tabindex="5"> 
 		<INPUT type="reset" id="reset" value="重置" tabindex="6">
@@ -101,7 +94,7 @@ function sf(){document.getElementById("account_id").focus();}
 <script>
 $('#id_submit').click(function(){
     $('#id_policyForm').ajaxSubmit({ 
-        url:'add.html', //提交给哪个执行
+        url:'addStroe.html', //提交给哪个执行
         type:'POST', 
         success: function(){alert("1");} //显示操作提示
         }); 

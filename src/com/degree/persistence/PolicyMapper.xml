@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.degree.persistence.PolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.degree.model.Policy" >
+    <id column="r_id" property="rId" jdbcType="VARCHAR" />
+    <result column="r_ServiceType" property="rServicetype" jdbcType="VARCHAR" />
+    <result column="r_InsuranceCompany" property="rInsurancecompany" jdbcType="INTEGER" />
+    <result column="r_IssuingType" property="rIssuingtype" jdbcType="VARCHAR" />
+    <result column="r_DeliveyName" property="rDeliveyname" jdbcType="VARCHAR" />
+    <result column="r_InsuredName" property="rInsuredname" jdbcType="VARCHAR" />
+    <result column="r_InsuredPhone" property="rInsuredphone" jdbcType="VARCHAR" />
+    <result column="r_CarNumber" property="rCarnumber" jdbcType="VARCHAR" />
+    <result column="r_ManufactureType" property="rManufacturetype" jdbcType="VARCHAR" />
+    <result column="r_CarframeNumber" property="rCarframenumber" jdbcType="VARCHAR" />
+    <result column="r_EngineNumber" property="rEnginenumber" jdbcType="VARCHAR" />
+    <result column="r_FirstRegisterNumber" property="rFirstregisternumber" jdbcType="DATE" />
+    <result column="r_ClientSubjection" property="rClientsubjection" jdbcType="VARCHAR" />
+    <result column="r_BuyType" property="rBuytype" jdbcType="VARCHAR" />
+    <result column="r_Saler" property="rSaler" jdbcType="VARCHAR" />
+    <result column="r_IssuingName" property="rIssuingname" jdbcType="VARCHAR" />
+    <result column="r_IssuingDate" property="rIssuingdate" jdbcType="DATE" />
+    <result column="r_GiftType" property="rGifttype" jdbcType="VARCHAR" />
+    <result column="r_SaveDateTime" property="rSavedatetime" jdbcType="TIMESTAMP" />
+    <result column="r_Isdeleted" property="rIsdeleted" jdbcType="INTEGER" />
+    <result column="r_1" property="r1" jdbcType="VARCHAR" />
+    <result column="r_2" property="r2" jdbcType="VARCHAR" />
+    <result column="r_3" property="r3" jdbcType="INTEGER" />
+    <result column="r_4" property="r4" jdbcType="DOUBLE" />
+    <result column="r_5" property="r5" jdbcType="VARCHAR" />
+    <result column="r_6" property="r6" jdbcType="TIMESTAMP" />
+    <result column="r_7" property="r7" jdbcType="VARCHAR" />
+    <result column="r_8" property="r8" jdbcType="VARCHAR" />
+    <result column="r_9" property="r9" jdbcType="VARCHAR" />
+    <result column="r_10" property="r10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    r_id, r_ServiceType, r_InsuranceCompany, r_IssuingType, r_DeliveyName, r_InsuredName, 
+    r_InsuredPhone, r_CarNumber, r_ManufactureType, r_CarframeNumber, r_EngineNumber, 
+    r_FirstRegisterNumber, r_ClientSubjection, r_BuyType, r_Saler, r_IssuingName, r_IssuingDate, 
+    r_GiftType, r_SaveDateTime, r_Isdeleted, r_1, r_2, r_3, r_4, r_5, r_6, r_7, r_8, 
+    r_9, r_10
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yq_policy
+    where r_id = #{rId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yq_policy
+    where r_id = #{rId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.degree.model.Policy" >
+    insert into yq_policy (r_id, r_ServiceType, r_InsuranceCompany, 
+      r_IssuingType, r_DeliveyName, r_InsuredName, 
+      r_InsuredPhone, r_CarNumber, r_ManufactureType, 
+      r_CarframeNumber, r_EngineNumber, r_FirstRegisterNumber, 
+      r_ClientSubjection, r_BuyType, r_Saler, 
+      r_IssuingName, r_IssuingDate, r_GiftType, 
+      r_SaveDateTime, r_Isdeleted, r_1, 
+      r_2, r_3, r_4, r_5, 
+      r_6, r_7, r_8, r_9, 
+      r_10)
+    values (#{rId,jdbcType=VARCHAR}, #{rServicetype,jdbcType=VARCHAR}, #{rInsurancecompany,jdbcType=INTEGER}, 
+      #{rIssuingtype,jdbcType=VARCHAR}, #{rDeliveyname,jdbcType=VARCHAR}, #{rInsuredname,jdbcType=VARCHAR}, 
+      #{rInsuredphone,jdbcType=VARCHAR}, #{rCarnumber,jdbcType=VARCHAR}, #{rManufacturetype,jdbcType=VARCHAR}, 
+      #{rCarframenumber,jdbcType=VARCHAR}, #{rEnginenumber,jdbcType=VARCHAR}, #{rFirstregisternumber,jdbcType=DATE}, 
+      #{rClientsubjection,jdbcType=VARCHAR}, #{rBuytype,jdbcType=VARCHAR}, #{rSaler,jdbcType=VARCHAR}, 
+      #{rIssuingname,jdbcType=VARCHAR}, #{rIssuingdate,jdbcType=DATE}, #{rGifttype,jdbcType=VARCHAR}, 
+      #{rSavedatetime,jdbcType=TIMESTAMP}, #{rIsdeleted,jdbcType=INTEGER}, #{r1,jdbcType=VARCHAR}, 
+      #{r2,jdbcType=VARCHAR}, #{r3,jdbcType=INTEGER}, #{r4,jdbcType=DOUBLE}, #{r5,jdbcType=VARCHAR}, 
+      #{r6,jdbcType=TIMESTAMP}, #{r7,jdbcType=VARCHAR}, #{r8,jdbcType=VARCHAR}, #{r9,jdbcType=VARCHAR}, 
+      #{r10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.degree.model.Policy" >
+    insert into yq_policy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        r_id,
+      </if>
+      <if test="rServicetype != null" >
+        r_ServiceType,
+      </if>
+      <if test="rInsurancecompany != null" >
+        r_InsuranceCompany,
+      </if>
+      <if test="rIssuingtype != null" >
+        r_IssuingType,
+      </if>
+      <if test="rDeliveyname != null" >
+        r_DeliveyName,
+      </if>
+      <if test="rInsuredname != null" >
+        r_InsuredName,
+      </if>
+      <if test="rInsuredphone != null" >
+        r_InsuredPhone,
+      </if>
+      <if test="rCarnumber != null" >
+        r_CarNumber,
+      </if>
+      <if test="rManufacturetype != null" >
+        r_ManufactureType,
+      </if>
+      <if test="rCarframenumber != null" >
+        r_CarframeNumber,
+      </if>
+      <if test="rEnginenumber != null" >
+        r_EngineNumber,
+      </if>
+      <if test="rFirstregisternumber != null" >
+        r_FirstRegisterNumber,
+      </if>
+      <if test="rClientsubjection != null" >
+        r_ClientSubjection,
+      </if>
+      <if test="rBuytype != null" >
+        r_BuyType,
+      </if>
+      <if test="rSaler != null" >
+        r_Saler,
+      </if>
+      <if test="rIssuingname != null" >
+        r_IssuingName,
+      </if>
+      <if test="rIssuingdate != null" >
+        r_IssuingDate,
+      </if>
+      <if test="rGifttype != null" >
+        r_GiftType,
+      </if>
+      <if test="rSavedatetime != null" >
+        r_SaveDateTime,
+      </if>
+      <if test="rIsdeleted != null" >
+        r_Isdeleted,
+      </if>
+      <if test="r1 != null" >
+        r_1,
+      </if>
+      <if test="r2 != null" >
+        r_2,
+      </if>
+      <if test="r3 != null" >
+        r_3,
+      </if>
+      <if test="r4 != null" >
+        r_4,
+      </if>
+      <if test="r5 != null" >
+        r_5,
+      </if>
+      <if test="r6 != null" >
+        r_6,
+      </if>
+      <if test="r7 != null" >
+        r_7,
+      </if>
+      <if test="r8 != null" >
+        r_8,
+      </if>
+      <if test="r9 != null" >
+        r_9,
+      </if>
+      <if test="r10 != null" >
+        r_10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        #{rId,jdbcType=VARCHAR},
+      </if>
+      <if test="rServicetype != null" >
+        #{rServicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="rInsurancecompany != null" >
+        #{rInsurancecompany,jdbcType=INTEGER},
+      </if>
+      <if test="rIssuingtype != null" >
+        #{rIssuingtype,jdbcType=VARCHAR},
+      </if>
+      <if test="rDeliveyname != null" >
+        #{rDeliveyname,jdbcType=VARCHAR},
+      </if>
+      <if test="rInsuredname != null" >
+        #{rInsuredname,jdbcType=VARCHAR},
+      </if>
+      <if test="rInsuredphone != null" >
+        #{rInsuredphone,jdbcType=VARCHAR},
+      </if>
+      <if test="rCarnumber != null" >
+        #{rCarnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rManufacturetype != null" >
+        #{rManufacturetype,jdbcType=VARCHAR},
+      </if>
+      <if test="rCarframenumber != null" >
+        #{rCarframenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rEnginenumber != null" >
+        #{rEnginenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rFirstregisternumber != null" >
+        #{rFirstregisternumber,jdbcType=DATE},
+      </if>
+      <if test="rClientsubjection != null" >
+        #{rClientsubjection,jdbcType=VARCHAR},
+      </if>
+      <if test="rBuytype != null" >
+        #{rBuytype,jdbcType=VARCHAR},
+      </if>
+      <if test="rSaler != null" >
+        #{rSaler,jdbcType=VARCHAR},
+      </if>
+      <if test="rIssuingname != null" >
+        #{rIssuingname,jdbcType=VARCHAR},
+      </if>
+      <if test="rIssuingdate != null" >
+        #{rIssuingdate,jdbcType=DATE},
+      </if>
+      <if test="rGifttype != null" >
+        #{rGifttype,jdbcType=VARCHAR},
+      </if>
+      <if test="rSavedatetime != null" >
+        #{rSavedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rIsdeleted != null" >
+        #{rIsdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="r1 != null" >
+        #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null" >
+        #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null" >
+        #{r3,jdbcType=INTEGER},
+      </if>
+      <if test="r4 != null" >
+        #{r4,jdbcType=DOUBLE},
+      </if>
+      <if test="r5 != null" >
+        #{r5,jdbcType=VARCHAR},
+      </if>
+      <if test="r6 != null" >
+        #{r6,jdbcType=TIMESTAMP},
+      </if>
+      <if test="r7 != null" >
+        #{r7,jdbcType=VARCHAR},
+      </if>
+      <if test="r8 != null" >
+        #{r8,jdbcType=VARCHAR},
+      </if>
+      <if test="r9 != null" >
+        #{r9,jdbcType=VARCHAR},
+      </if>
+      <if test="r10 != null" >
+        #{r10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.degree.model.Policy" >
+    update yq_policy
+    <set >
+      <if test="rServicetype != null" >
+        r_ServiceType = #{rServicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="rInsurancecompany != null" >
+        r_InsuranceCompany = #{rInsurancecompany,jdbcType=INTEGER},
+      </if>
+      <if test="rIssuingtype != null" >
+        r_IssuingType = #{rIssuingtype,jdbcType=VARCHAR},
+      </if>
+      <if test="rDeliveyname != null" >
+        r_DeliveyName = #{rDeliveyname,jdbcType=VARCHAR},
+      </if>
+      <if test="rInsuredname != null" >
+        r_InsuredName = #{rInsuredname,jdbcType=VARCHAR},
+      </if>
+      <if test="rInsuredphone != null" >
+        r_InsuredPhone = #{rInsuredphone,jdbcType=VARCHAR},
+      </if>
+      <if test="rCarnumber != null" >
+        r_CarNumber = #{rCarnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rManufacturetype != null" >
+        r_ManufactureType = #{rManufacturetype,jdbcType=VARCHAR},
+      </if>
+      <if test="rCarframenumber != null" >
+        r_CarframeNumber = #{rCarframenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rEnginenumber != null" >
+        r_EngineNumber = #{rEnginenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rFirstregisternumber != null" >
+        r_FirstRegisterNumber = #{rFirstregisternumber,jdbcType=DATE},
+      </if>
+      <if test="rClientsubjection != null" >
+        r_ClientSubjection = #{rClientsubjection,jdbcType=VARCHAR},
+      </if>
+      <if test="rBuytype != null" >
+        r_BuyType = #{rBuytype,jdbcType=VARCHAR},
+      </if>
+      <if test="rSaler != null" >
+        r_Saler = #{rSaler,jdbcType=VARCHAR},
+      </if>
+      <if test="rIssuingname != null" >
+        r_IssuingName = #{rIssuingname,jdbcType=VARCHAR},
+      </if>
+      <if test="rIssuingdate != null" >
+        r_IssuingDate = #{rIssuingdate,jdbcType=DATE},
+      </if>
+      <if test="rGifttype != null" >
+        r_GiftType = #{rGifttype,jdbcType=VARCHAR},
+      </if>
+      <if test="rSavedatetime != null" >
+        r_SaveDateTime = #{rSavedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rIsdeleted != null" >
+        r_Isdeleted = #{rIsdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="r1 != null" >
+        r_1 = #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null" >
+        r_2 = #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null" >
+        r_3 = #{r3,jdbcType=INTEGER},
+      </if>
+      <if test="r4 != null" >
+        r_4 = #{r4,jdbcType=DOUBLE},
+      </if>
+      <if test="r5 != null" >
+        r_5 = #{r5,jdbcType=VARCHAR},
+      </if>
+      <if test="r6 != null" >
+        r_6 = #{r6,jdbcType=TIMESTAMP},
+      </if>
+      <if test="r7 != null" >
+        r_7 = #{r7,jdbcType=VARCHAR},
+      </if>
+      <if test="r8 != null" >
+        r_8 = #{r8,jdbcType=VARCHAR},
+      </if>
+      <if test="r9 != null" >
+        r_9 = #{r9,jdbcType=VARCHAR},
+      </if>
+      <if test="r10 != null" >
+        r_10 = #{r10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.degree.model.Policy" >
+    update yq_policy
+    set r_ServiceType = #{rServicetype,jdbcType=VARCHAR},
+      r_InsuranceCompany = #{rInsurancecompany,jdbcType=INTEGER},
+      r_IssuingType = #{rIssuingtype,jdbcType=VARCHAR},
+      r_DeliveyName = #{rDeliveyname,jdbcType=VARCHAR},
+      r_InsuredName = #{rInsuredname,jdbcType=VARCHAR},
+      r_InsuredPhone = #{rInsuredphone,jdbcType=VARCHAR},
+      r_CarNumber = #{rCarnumber,jdbcType=VARCHAR},
+      r_ManufactureType = #{rManufacturetype,jdbcType=VARCHAR},
+      r_CarframeNumber = #{rCarframenumber,jdbcType=VARCHAR},
+      r_EngineNumber = #{rEnginenumber,jdbcType=VARCHAR},
+      r_FirstRegisterNumber = #{rFirstregisternumber,jdbcType=DATE},
+      r_ClientSubjection = #{rClientsubjection,jdbcType=VARCHAR},
+      r_BuyType = #{rBuytype,jdbcType=VARCHAR},
+      r_Saler = #{rSaler,jdbcType=VARCHAR},
+      r_IssuingName = #{rIssuingname,jdbcType=VARCHAR},
+      r_IssuingDate = #{rIssuingdate,jdbcType=DATE},
+      r_GiftType = #{rGifttype,jdbcType=VARCHAR},
+      r_SaveDateTime = #{rSavedatetime,jdbcType=TIMESTAMP},
+      r_Isdeleted = #{rIsdeleted,jdbcType=INTEGER},
+      r_1 = #{r1,jdbcType=VARCHAR},
+      r_2 = #{r2,jdbcType=VARCHAR},
+      r_3 = #{r3,jdbcType=INTEGER},
+      r_4 = #{r4,jdbcType=DOUBLE},
+      r_5 = #{r5,jdbcType=VARCHAR},
+      r_6 = #{r6,jdbcType=TIMESTAMP},
+      r_7 = #{r7,jdbcType=VARCHAR},
+      r_8 = #{r8,jdbcType=VARCHAR},
+      r_9 = #{r9,jdbcType=VARCHAR},
+      r_10 = #{r10,jdbcType=VARCHAR}
+    where r_id = #{rId,jdbcType=VARCHAR}
+  </update>
+  
+	<select id="getAllPolicy" parameterType="String" resultMap="BaseResultMap">  
+		select * from yq_policy where r_id in 
+		( select FormId from yq_policy_detail where (CommerceBegin >= #{0} and CommerceBegin  &lt;  #{1}) 
+		and CommerceNumber LIKE #{2} and CommerceNumber LIKE #{13}) 
+		and (r_FirstRegisterNumber >= #{3} and r_FirstRegisterNumber &lt;  #{4}) 
+		and (r_IssuingDate >= #{5} and r_IssuingDate  &lt;  #{6}) 
+		and r_DeliveyName LIKE #{7} 
+		and r_InsuredName LIKE #{8} 
+		and r_Saler LIKE #{9} 
+		and r_CarNumber LIKE #{10} 
+	    and r_Isdeleted = #{11}   
+	    and r_1 LIKE #{12}      
+	    ORDER BY r_id DESC;
+	</select>
+	
+	<select id="getLastPolicy" resultMap="BaseResultMap">  
+		select * from yq_policy order by r_id DESC limit 1; 
+	</select> 	  
+</mapper>

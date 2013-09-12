@@ -26,6 +26,7 @@
 	       and a_number LIKE #{6} 
 	       and c_name LIKE #{7} 
 	       and sa_name LIKE #{8}  
+	       and sa_password LIKE #{9} 
 	       and r_isdeleted = '0'       
 	       ORDER BY r_id DESC;
 	</select>

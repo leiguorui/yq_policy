@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.degree.persistence.StoreDao">
+	
+	<resultMap id="result" type="store">
+        <result property="id" column="s_id"/>
+        <result property="name" column="s_name"/>
+        <result property="time" column="s_time"/>
+        <result property="isdeleted" column="s_isdeleted"/>
+    </resultMap>
+	
+	<select id="getAll" resultMap="result">  
+		SELECT * 
+		FROM yq_store; 
+	</select>
+	
+	<insert id="save" parameterType="store" useGeneratedKeys="true"  keyProperty="s_id">
+		INSERT INTO yq_store (s_id,s_name,s_time,s_isdeleted) 
+    	VALUE (#{id},#{name},#{time},#{isdeleted});
+	</insert>
+	
+	<update id="update" parameterType="store"> 
+  		UPDATE yq_store 
+  		SET 
+			s_name = #{name},  
+			s_time = #{time},  
+			s_isdeleted = #{isdeleted} 
+  		where s_id = #{id};
+	</update>
+	
+	<select id="delete" parameterType="String">  
+		UPDATE yq_store 
+  		SET 
+			s_isdeleted = #{isdeleted} 
+  		where s_id = #{id};
+	</select> 
+	
+	<select id="getLast" resultMap="result">  
+		select * from yq_store order by s_id DESC limit 1; 
+	</select> 
+</mapper>

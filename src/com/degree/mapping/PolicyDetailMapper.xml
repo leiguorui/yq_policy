@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.degree.dao.PolicyDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.degree.model.PolicyDetail" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="FormId" property="formid" jdbcType="VARCHAR" />
+    <result column="YearNumer" property="yearnumer" jdbcType="INTEGER" />
+    <result column="CommerceNumber" property="commercenumber" jdbcType="VARCHAR" />
+    <result column="Discount" property="discount" jdbcType="DOUBLE" />
+    <result column="Charge" property="charge" jdbcType="DOUBLE" />
+    <result column="Pending1" property="pending1" jdbcType="DOUBLE" />
+    <result column="Pending2" property="pending2" jdbcType="DOUBLE" />
+    <result column="FormType" property="formtype" jdbcType="VARCHAR" />
+    <result column="CommerceBegin" property="commercebegin" jdbcType="DATE" />
+    <result column="CommerceEnd" property="commerceend" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, FormId, YearNumer, CommerceNumber, Discount, Charge, Pending1, Pending2, FormType, 
+    CommerceBegin, CommerceEnd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yq_policy_detail
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yq_policy_detail
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.degree.model.PolicyDetail" >
+    insert into yq_policy_detail (Id, FormId, YearNumer, 
+      CommerceNumber, Discount, Charge, 
+      Pending1, Pending2, FormType, 
+      CommerceBegin, CommerceEnd)
+    values (#{id,jdbcType=INTEGER}, #{formid,jdbcType=VARCHAR}, #{yearnumer,jdbcType=INTEGER}, 
+      #{commercenumber,jdbcType=VARCHAR}, #{discount,jdbcType=DOUBLE}, #{charge,jdbcType=DOUBLE}, 
+      #{pending1,jdbcType=DOUBLE}, #{pending2,jdbcType=DOUBLE}, #{formtype,jdbcType=VARCHAR}, 
+      #{commercebegin,jdbcType=DATE}, #{commerceend,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.degree.model.PolicyDetail" >
+    insert into yq_policy_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="formid != null" >
+        FormId,
+      </if>
+      <if test="yearnumer != null" >
+        YearNumer,
+      </if>
+      <if test="commercenumber != null" >
+        CommerceNumber,
+      </if>
+      <if test="discount != null" >
+        Discount,
+      </if>
+      <if test="charge != null" >
+        Charge,
+      </if>
+      <if test="pending1 != null" >
+        Pending1,
+      </if>
+      <if test="pending2 != null" >
+        Pending2,
+      </if>
+      <if test="formtype != null" >
+        FormType,
+      </if>
+      <if test="commercebegin != null" >
+        CommerceBegin,
+      </if>
+      <if test="commerceend != null" >
+        CommerceEnd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="formid != null" >
+        #{formid,jdbcType=VARCHAR},
+      </if>
+      <if test="yearnumer != null" >
+        #{yearnumer,jdbcType=INTEGER},
+      </if>
+      <if test="commercenumber != null" >
+        #{commercenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="charge != null" >
+        #{charge,jdbcType=DOUBLE},
+      </if>
+      <if test="pending1 != null" >
+        #{pending1,jdbcType=DOUBLE},
+      </if>
+      <if test="pending2 != null" >
+        #{pending2,jdbcType=DOUBLE},
+      </if>
+      <if test="formtype != null" >
+        #{formtype,jdbcType=VARCHAR},
+      </if>
+      <if test="commercebegin != null" >
+        #{commercebegin,jdbcType=DATE},
+      </if>
+      <if test="commerceend != null" >
+        #{commerceend,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.degree.model.PolicyDetail" >
+    update yq_policy_detail
+    <set >
+      <if test="formid != null" >
+        FormId = #{formid,jdbcType=VARCHAR},
+      </if>
+      <if test="yearnumer != null" >
+        YearNumer = #{yearnumer,jdbcType=INTEGER},
+      </if>
+      <if test="commercenumber != null" >
+        CommerceNumber = #{commercenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        Discount = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="charge != null" >
+        Charge = #{charge,jdbcType=DOUBLE},
+      </if>
+      <if test="pending1 != null" >
+        Pending1 = #{pending1,jdbcType=DOUBLE},
+      </if>
+      <if test="pending2 != null" >
+        Pending2 = #{pending2,jdbcType=DOUBLE},
+      </if>
+      <if test="formtype != null" >
+        FormType = #{formtype,jdbcType=VARCHAR},
+      </if>
+      <if test="commercebegin != null" >
+        CommerceBegin = #{commercebegin,jdbcType=DATE},
+      </if>
+      <if test="commerceend != null" >
+        CommerceEnd = #{commerceend,jdbcType=DATE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.degree.model.PolicyDetail" >
+    update yq_policy_detail
+    set FormId = #{formid,jdbcType=VARCHAR},
+      YearNumer = #{yearnumer,jdbcType=INTEGER},
+      CommerceNumber = #{commercenumber,jdbcType=VARCHAR},
+      Discount = #{discount,jdbcType=DOUBLE},
+      Charge = #{charge,jdbcType=DOUBLE},
+      Pending1 = #{pending1,jdbcType=DOUBLE},
+      Pending2 = #{pending2,jdbcType=DOUBLE},
+      FormType = #{formtype,jdbcType=VARCHAR},
+      CommerceBegin = #{commercebegin,jdbcType=DATE},
+      CommerceEnd = #{commerceend,jdbcType=DATE}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

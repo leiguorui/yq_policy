@@ -5,43 +5,47 @@
 	<a class="img" href="my_account.html?lang=en"><img src="images/logo.jpg" /></a>
 	<span>
 		<strong>
-		${user }
+		${user.account }
 		</strong>
-		<a href="my_account.html?lang=en">新龙业</a>
+		<a >${user.name }</a>
 	</span>
 </span>
-<div id="search">
-	<input type="text" placeholder="快速查找 ..." />
-	<button class="glyphicons search"><i></i></button>
+<div>
+<p>
+</p>
 </div>
 <ul>
 	
-	<c:if test="${user == '管理员' }">
-
-	</c:if>
-	
 	<c:choose>
-		<c:when test="${user == '管理员' }">
+		<c:when test="${user.name == 'admin' }">
 			<li class="glyphicons home active">
 				<a href="systemManage.html"><i></i><span>控制面板</span></a>
 			</li>		
-			<li class="glyphicons calendar"><a href="calendar.html?lang=en"><i></i><span>整车销售</span></a></li>		
-			<li class="glyphicons calendar"><a href="calendar.html?lang=en"><i></i><span>二手车</span></a></li>
-			<li class="glyphicons picture"><a href="gallery.html?lang=en"><i></i><span>售后服务</span></a></li>
+			<li class="glyphicons calendar"><a href="#" class="has_no_power"><i></i><span>整车销售</span></a></li>		
+			<li class="glyphicons calendar"><a href="#" class="has_no_power"><i></i><span>二手车</span></a></li>
+			<li class="glyphicons picture"><a href="#" class="has_no_power"><i></i><span>售后服务</span></a></li>
 			<li class="hasSubmenu glyphicons inbox_plus">
-				<a href="managePolicy.html"><i></i><span>衍生业务</span></a>
+				<a href="#" class="has_no_power"><i></i><span>衍生业务</span></a>
 			</li>		
 		</c:when>
 		<c:otherwise>
 			<li class="glyphicons home">
-				<a href="systemManage.html"><i></i><span>控制面板</span></a>
+				<a href="#" class="has_no_power"><i></i><span>控制面板</span></a>
 			</li>		
-			<li class="glyphicons calendar"><a href="calendar.html?lang=en"><i></i><span>整车销售</span></a></li>		
-			<li class="glyphicons calendar"><a href="calendar.html?lang=en"><i></i><span>二手车</span></a></li>
-			<li class="glyphicons picture"><a href="gallery.html?lang=en"><i></i><span>售后服务</span></a></li>
+			<li class="glyphicons calendar"><a href="#" class="has_no_power"><i></i><span>整车销售</span></a></li>		
+			<li class="glyphicons calendar"><a href="#" class="has_no_power"><i></i><span>二手车</span></a></li>
+			<li class="glyphicons picture"><a href="#" class="has_no_power"><i></i><span>售后服务</span></a></li>
 			<li class="hasSubmenu glyphicons inbox_plus active">
 				<a href="managePolicy.html"><i></i><span>衍生业务</span></a>
 			</li>			
 		</c:otherwise>
 	</c:choose>
 </ul>
+<script>
+$(function(){
+	$(".has_no_power").click(function(){
+		alert("您的权限不能操作!");
+		return false;
+	});
+});
+</script>

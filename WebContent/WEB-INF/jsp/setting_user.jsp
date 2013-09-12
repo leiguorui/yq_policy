@@ -73,23 +73,23 @@ form br {
 </style>
 
 <script>
-function sf(){document.getElementById("account_id").focus();}
+function sf(){document.getElementById("password_id").focus();}
 </script>
 </head>
 <body onLoad=sf()>
 
-<form:form commandName="user" action="addUser.html">
+<form:form commandName="user" action="settingUser.html">
+<form:input path="id" type="hidden"/>
+<form:input path="isdeleted" type="hidden"/>
+<form:input path="time" type="hidden"/>
 <fieldset>
-<legend>人员信息录入</legend>
+<legend>个人信息设置</legend>
 	<label for="firstname" accesskey="f">姓名: </label>
 		<form:input path="account" id="account_id" type="text" tabindex="1" value="" title="first name"/><br>
 	<label for="lastname" accesskey="l">所属门店: </label>
-		<form:select path="name">
-			<c:forEach items="${stores }" var="store">
-				<option value="${store.name }">${store.name }
-			</c:forEach>
-		</form:select>
-		<br/>
+		<form:input path="name" type="text" tabindex="2" title="last name"/><br>
+	<label for="lastname" accesskey="l">新密码: </label>
+		<form:input path="password" id="password_id" type="text" tabindex="2" title="last name"/><br>
 	<label for="kludge"></label>
 		<input type="submit" value="保存" id="submit" tabindex="5"> 
 		<INPUT type="reset" id="reset" value="重置" tabindex="6">

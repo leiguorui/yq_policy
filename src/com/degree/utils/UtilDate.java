@@ -68,4 +68,8 @@ public class UtilDate {
 		return rad.nextInt(1000)+"";
 	}
 	
+	
+	public static void main(String[] arge){
+		
+	}
 }

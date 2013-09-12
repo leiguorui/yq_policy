@@ -83,8 +83,8 @@ request.setAttribute("realPath", realPath);
 	<form class="form-signin" id="login-form" method="post" action="login.html">
 		<h3 class="glyphicons unlock form-signin-heading"><i></i> 欢迎回来,请登录</h3>
 		<div class="uniformjs">
-			<input type="text" id="username_id" class="input-block-level" placeholder="Email address"> 
-			<input type="password" id="password_id" class="input-block-level" placeholder="Password"> 
+			<input type="text" id="username_id" class="input-block-level" placeholder="您的账号"> 
+			<input type="password" id="password_id" class="input-block-level" placeholder="登录密码"> 
 			<label class="checkbox"><input type="checkbox" value="remember-me">记住密码</label>
 		</div>
 		<button class="btn btn-large btn-primary" type="button" id="loginId">登录</button>
@@ -156,10 +156,10 @@ $("#loginId").click(function(){
 			  alert("用户名错误!");
 		  }else if(data == "false"){
 			  alert("密码错误!");
-		  }else if(data == "ok"){
-			  location = "managePolicy.html";
+		  }else if(data == "0"){
+			  location = "systemManage.html";
 		  }else{
-			  alert("未知错误!");
+			  location = "managePolicy.html";
 		  }
 	  });
 	});

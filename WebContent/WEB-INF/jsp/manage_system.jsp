@@ -102,7 +102,7 @@
 		<div id="menu" class="hidden-phone">
 			<c:import url="/left_menu.html" charEncoding="UTF-8" >
 				<c:param name="type" value="manage"></c:param>
-				<c:param name="user" value="${sessionScope.USER_CONTEXT.name}"></c:param>
+				<c:param name="userid" value="${sessionScope.USER_CONTEXT.id}"></c:param>
 			</c:import>
 			<div class="clearfix" style="clear: both"></div>
 		</div>
@@ -121,11 +121,60 @@
 			<div class="span2">
 				<a href="addUser.html" rel="superbox[iframe][500x200]" class="widget-stats">
 					<span class="glyphicons user_add"><i></i></span>
-					<span class="txt">添加用户</span>
+					<span class="txt">用户添加</span>
 					<div class="clearfix"></div>
-					<span class="count label label-warning">33</span>
+					<span class="count label label-warning"></span>
 				</a>
 			</div>
+			
+			<div class="span2">
+				<a href="manageUser.html" rel="superbox[iframe][450x800]" class="widget-stats">
+					<span class="glyphicons old_man"><i></i></span>
+					<span class="txt">用户管理</span>
+					<div class="clearfix"></div>
+					<span class="count label label-warning">${userSum-1 }</span>
+				</a>
+			</div>
+			
+			<div class="span2">
+				<a href="manageCustomer.html" rel="superbox[iframe][760x500]" class="widget-stats">
+					<span class="glyphicons parents"><i></i></span>
+					<span class="txt">客户管理</span>
+					<div class="clearfix"></div>
+					<span class="count label label-warning">${cusSum }</span>
+				</a>
+			</div>
+			
+			<div class="span2">
+				<a href="manageCar.html" rel="superbox[iframe][780x900]" class="widget-stats">
+					<span class="glyphicons car"><i></i></span>
+					<span class="txt">车辆管理</span>
+					<div class="clearfix"></div>
+					<span class="count label label-warning">${carSum }</span>
+				</a>
+			</div>
+			
+			<div class="span2">
+				<a href="addStore.html" rel="superbox[iframe][400x150]" class="widget-stats">
+					<span class="glyphicons temple_buddhist"><i></i></span>
+					<span class="txt">添加门店</span>
+					<div class="clearfix"></div>
+					<span class="count label label-warning">${carSum }</span>
+				</a>
+			</div>
+			
+			<div class="span2">
+				<a href="manageStore.html" rel="superbox[iframe][780x900]" class="widget-stats">
+					<span class="glyphicons bank"><i></i></span>
+					<span class="txt">门店管理</span>
+					<div class="clearfix"></div>
+					<span class="count label label-warning">${carSum }</span>
+				</a>
+			</div>
+		</div>
+		
+		<div class="row-fluid">
+			
 		</div>
 	
 	</div>
